@@ -42,5 +42,6 @@ allowedCountries | array | -C |
 episodePreferNumber | boolean | -E | 
 expectedTitle | string | -T | 
 expectedGroup | string | -G | 
+advanced | boolean | -a
 
 For more information about guessit parameter, go to [Guessit Documentation](http://guessit.readthedocs.io/en/latest/)

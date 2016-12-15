@@ -34,6 +34,16 @@ describe('Guessit', () => {
     type: 'episode' 
   };
 
+  const expectedAdvancedData = { 
+    title: { value: 'South Park', raw: 'South.Park', start: 0, end: 11 },
+    season: { value: 1, raw: '01', start: 12, end: 14 },
+    episode: { value: 1, raw: '01', start: 16, end: 18 },
+    screen_size: { value: '720p', raw: '720', start: 19, end: 22 },
+    container: { value: 'mkv', raw: 'mkv', start: 22, end: 26 },
+    mimetype: { value: 'video/x-matroska', start: 26, end: 26 },
+    type: { value: 'episode', start: 26, end: 26 }
+  };
+
   it('Should convert options to guessit parameters', () => {
     assert.deepStrictEqual(guessit._convertOptions(valideOptions), expectedValidOptions);
   });
@@ -42,6 +52,17 @@ describe('Guessit', () => {
     guessit(serieName)
       .then((data) => {
         assert.deepStrictEqual(data, expectedSerieData);
+        done();
+      })
+      .catch((e) => { done(e); });
+  });
+
+
+  it('Should retreive advanced results', (done) => {
+    guessit(serieName, { advanced: true })
+      .then((data) => {
+        console.log(data);
+        assert.deepStrictEqual(data, expectedAdvancedData);
         done();
       })
       .catch((e) => { done(e); });

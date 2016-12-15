@@ -34,6 +34,11 @@ module.exports = (function() {
   function guess(filename, options) {
     return new Promise((resolve, reject) => {
       let parameters = [];
+      const advanced = (options && options.advanced);
+      
+      if (advanced) {
+        delete options.advanced;
+      }
       
       try {
         if (options) {
@@ -43,7 +48,7 @@ module.exports = (function() {
         return reject(e);
       }
 
-      if (options && options.advanced) {
+      if (advanced) {
         parameters.push('-a');
       } else {
         parameters.push('-j');
@@ -59,7 +64,7 @@ module.exports = (function() {
       child.stdout.on('data', (response) => {
         let data = response.toString();
 
-        if (options && options.advanced) {
+        if (advanced) {
           data = response.toString()
                          .replace(/(\r\n|\n|\r)/gm, '')
                          .match(/found: (\{.*\})/i);
