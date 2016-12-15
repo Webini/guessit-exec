@@ -11,5 +11,6 @@
   "devDependencies": {
     "eslint": "^3.12.2",
     "mocha": "^3.2.0"
-  }
+  },
+  "repository": "git://github.com/Webini/guessit-exec.git"
 }
