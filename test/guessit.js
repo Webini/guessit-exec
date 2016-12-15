@@ -61,7 +61,6 @@ describe('Guessit', () => {
   it('Should retreive advanced results', (done) => {
     guessit(serieName, { advanced: true })
       .then((data) => {
-        console.log(data);
         assert.deepStrictEqual(data, expectedAdvancedData);
         done();
       })
